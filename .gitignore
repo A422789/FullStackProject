@@ -1,0 +1,7 @@
+# Backend
+node_modules/
+BackEnd/.env
+BackEnd/node_modules/
+
+# Frontend env (local only - do not commit)
+Frontend/js/env.js
