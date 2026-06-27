@@ -22,15 +22,16 @@ exports.getBlogs = async (req, res) => {
 exports.createBlog = async (req, res) => {
   try {
     const { title, category, status, description, date, views, author } = req.body;
+    const authorName = author || (req.user ? req.user.name : 'Admin');
 
     const blog = await Blog.create({
       title,
       category,
-      status,
+      status: status ? status.toLowerCase() : 'draft',
       description,
       date,
       views,
-      author,
+      author: authorName,
     });
 
     res.status(201).json({
@@ -57,7 +58,15 @@ exports.updateBlog = async (req, res) => {
 
     blog = await Blog.findByIdAndUpdate(
       req.params.id,
-      { title, category, status, description, date, views, author },
+      {
+        title,
+        category,
+        status: status ? status.toLowerCase() : blog.status,
+        description,
+        date,
+        views,
+        author: author || blog.author,
+      },
       { new: true, runValidators: true }
     );
 

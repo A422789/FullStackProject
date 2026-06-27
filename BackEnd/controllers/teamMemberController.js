@@ -1,11 +1,12 @@
 const TeamMember = require('../models/TeamMember');
+const User = require('../models/User');
 
 // @desc    Get all team members
 // @route   GET /api/team
 // @access  Private (Admin only)
 exports.getTeamMembers = async (req, res) => {
   try {
-    const members = await TeamMember.find().sort({ createdAt: -1 });
+    const members = await TeamMember.find().populate('user', 'role').sort({ createdAt: -1 });
     res.json({
       success: true,
       count: members.length,
@@ -20,8 +21,25 @@ exports.getTeamMembers = async (req, res) => {
 // @route   POST /api/team
 // @access  Private (Admin only)
 exports.createTeamMember = async (req, res) => {
+  let createdUser = null;
+  let isNewUser = false;
   try {
-    const { fullName, role, email, phone, department, skills } = req.body;
+    const { fullName, role, email, phone, department, skills, password } = req.body;
+
+    // Check if user already exists
+    let user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) {
+      // Create user account for the team member
+      const defaultPassword = password || 'MemberTempPass2026!';
+      user = await User.create({
+        name: fullName,
+        email: email.toLowerCase(),
+        password: defaultPassword,
+        role: 'member', // Default role for team members
+      });
+      createdUser = user;
+      isNewUser = true;
+    }
 
     // Handle comma separated skills if it's sent as a string
     let skillsArray = [];
@@ -34,6 +52,7 @@ exports.createTeamMember = async (req, res) => {
     }
 
     const member = await TeamMember.create({
+      user: user._id,
       fullName,
       role,
       email,
@@ -47,6 +66,10 @@ exports.createTeamMember = async (req, res) => {
       data: member,
     });
   } catch (error) {
+    // If team member creation failed and we created a user, roll back user creation
+    if (isNewUser && createdUser) {
+      await User.findByIdAndDelete(createdUser._id);
+    }
     res.status(400).json({ success: false, error: error.message });
   }
 };
@@ -62,6 +85,17 @@ exports.updateTeamMember = async (req, res) => {
 
     if (!member) {
       return res.status(404).json({ success: false, message: 'Team member not found' });
+    }
+
+    // Update the associated User document if email or name changed
+    if (member.user) {
+      const userUpdate = {};
+      if (fullName) userUpdate.name = fullName;
+      if (email) userUpdate.email = email.toLowerCase();
+
+      if (Object.keys(userUpdate).length > 0) {
+        await User.findByIdAndUpdate(member.user, userUpdate);
+      }
     }
 
     // Handle skills formatting if passed
@@ -100,6 +134,11 @@ exports.deleteTeamMember = async (req, res) => {
 
     if (!member) {
       return res.status(404).json({ success: false, message: 'Team member not found' });
+    }
+
+    // Delete associated user
+    if (member.user) {
+      await User.findByIdAndDelete(member.user);
     }
 
     await member.deleteOne();

@@ -1,0 +1,148 @@
+[
+  {
+    "_id": "6a3d89d9386e8e685e228090",
+    "fullName": "Karam Abu Daqan",
+    "role": "Motion Graphic Designer",
+    "email": "karam@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Design",
+    "skills": [
+      "After Effects",
+      "Premiere",
+      "Motion"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228091",
+    "fullName": "Aisha Dalul",
+    "role": "Graphic Designer",
+    "email": "aisha@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Design",
+    "skills": [
+      "Figma",
+      "Illustrator",
+      "Photoshop"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228092",
+    "fullName": "Thekra Hammouda",
+    "role": "Graphic Designer",
+    "email": "thekra@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Design",
+    "skills": [
+      "Figma",
+      "Branding",
+      "Typography"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228093",
+    "fullName": "Aya Abu Zaid",
+    "role": "Graphic Designer",
+    "email": "aya@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Design",
+    "skills": [
+      "Photoshop",
+      "Figma"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228094",
+    "fullName": "Lama Salha",
+    "role": "UXUI Designer",
+    "email": "lama@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Design",
+    "skills": [
+      "Figma",
+      "Research",
+      "Prototyping"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228095",
+    "fullName": "Deema Al Shorbasy",
+    "role": "Frontend Developer",
+    "email": "deema@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Development",
+    "skills": [
+      "React",
+      "CSS",
+      "JavaScript"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228096",
+    "fullName": "Mohammed Al Haytham",
+    "role": "Frontend Developer",
+    "email": "mohammed@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Development",
+    "skills": [
+      "Vue",
+      "Tailwind",
+      "TypeScript"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228097",
+    "fullName": "Akram Al Salout",
+    "role": "Backend Developer",
+    "email": "akram@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Development",
+    "skills": [
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "createdAt": "2026-06-25T20:04:41.542Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3d89d9386e8e685e228098",
+    "fullName": "Amjad Sabbah",
+    "role": "Backend Developer",
+    "email": "amjad@gmail.com",
+    "phone": "+972 598273728",
+    "department": "Design",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "createdAt": "2026-06-25T20:04:41.543Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a3ef0d9ed4c45f9be9a8e0a",
+    "fullName": "Ahmed Ayyad",
+    "role": "MERN Stack",
+    "email": "test@gmail.com",
+    "phone": "+201043546546",
+    "department": "Development",
+    "skills": [
+      "MERN Stack"
+    ],
+    "createdAt": "2026-06-26T21:36:25.425Z",
+    "__v": 0
+  }
+]

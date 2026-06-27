@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const TeamMemberSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: [true, 'Please link a user account'],
+  },
   fullName: {
     type: String,
     required: [true, 'Please add a full name'],

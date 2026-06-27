@@ -142,13 +142,22 @@ async function saveMember() {
     const phone      = document.getElementById('m-phone').value.trim();
     const department = document.getElementById('m-dept').value;
     const skills     = document.getElementById('m-skills').value.trim();
+    const password   = document.getElementById('m-password') ? document.getElementById('m-password').value.trim() : '';
 
     if (!fullName || !role || !email || !phone || !department) {
         showToast('Please fill in all required fields.');
         return;
     }
 
+    if (!editingId && !password) {
+        showToast('Please provide a password for the member login account.');
+        return;
+    }
+
     const payload = { fullName, role, email, phone, department, skills };
+    if (!editingId) {
+        payload.password = password;
+    }
 
     try {
         const url    = editingId ? `${ENV.API_BASE_URL}/team/${editingId}` : `${ENV.API_BASE_URL}/team`;
@@ -241,16 +250,25 @@ function applyFilters() {
 
 // ─── MODAL HELPERS ───────────────────────────────────────────────────────────
 window.openModal = function(id) {
-    if (id === 'addModal' && !editingId) {
-        document.getElementById('m-fullname').value = '';
-        document.getElementById('m-role').value     = '';
-        document.getElementById('m-email').value    = '';
-        document.getElementById('m-phone').value    = '';
-        document.getElementById('m-dept').selectedIndex = 0;
-        document.getElementById('m-skills').value   = '';
+    if (id === 'addModal') {
+        const passwordContainer = document.getElementById('password-field-container');
+        if (editingId) {
+            if (passwordContainer) passwordContainer.style.display = 'none';
+        } else {
+            document.getElementById('m-fullname').value = '';
+            document.getElementById('m-role').value     = '';
+            document.getElementById('m-email').value    = '';
+            document.getElementById('m-phone').value    = '';
+            document.getElementById('m-dept').selectedIndex = 0;
+            document.getElementById('m-skills').value   = '';
+            const passInput = document.getElementById('m-password');
+            if (passInput) passInput.value = '';
 
-        const modalTitle = document.querySelector('#addModal .modal-header h3');
-        if (modalTitle) modalTitle.textContent = 'Add Team Member';
+            if (passwordContainer) passwordContainer.style.display = 'block';
+
+            const modalTitle = document.querySelector('#addModal .modal-header h3');
+            if (modalTitle) modalTitle.textContent = 'Add Team Member';
+        }
     }
     document.getElementById(id).classList.add('open');
 };
